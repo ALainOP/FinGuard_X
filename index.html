@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinGuard X</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-effects" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+      <span class="blob blob-4"></span>
+      <div class="particles">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+    </div>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="left-header">
+          <h1>FinGuard X</h1>
+          <p>Behavioral cyber defense at the decision moment.</p>
+        </div>
+        <button id="menuToggleBtn" class="primary menu-toggle" aria-label="Toggle menu">X</button>
+        <nav id="featureMenu" class="feature-menu">
+          <button data-panel="hvmPanel" class="menu-item">HVM Dashboard</button>
+          <button data-panel="dnaPanel" class="menu-item">Scam DNA Engine</button>
+          <button data-panel="eventPanel" class="menu-item">Event Feed</button>
+          <button data-panel="classifierPanel" class="menu-item">Threshold Classifier</button>
+          <button data-panel="familyPanel" class="menu-item">Family Protect</button>
+        </nav>
+        <div class="toolbar">
+          <button id="demoModeBtn" class="primary">Run Judge Demo</button>
+          <button id="storyModeBtn" class="primary">Run Story Mode</button>
+          <button id="resetBtn">Reset Session</button>
+        </div>
+      </aside>
+
+      <main class="layout">
+        <section class="panel trap">
+        <p class="hero-badge">LIVE SCAM SIMULATION</p>
+        <h2>Live Scam <span class="gradient-accent">Simulation</span></h2>
+        <p id="msCounter" class="muted">Reaction timer: 0.000s</p>
+        <div class="simulation-row">
+          <label for="simulationSource">Simulation source</label>
+          <select id="simulationSource">
+            <option value="merged" selected>Merged (payment + text)</option>
+            <option value="payment-only">Payment-only</option>
+            <option value="text-only">Text-only</option>
+          </select>
+        </div>
+        <div class="simulation-row">
+          <label for="pressureWindow">Pressure window</label>
+          <select id="pressureWindow">
+            <option value="15000" selected>15 seconds</option>
+            <option value="20000">20 seconds</option>
+          </select>
+        </div>
+        <div id="scamCard" class="scam-card"></div>
+        <div class="actions">
+          <button id="payNowBtn" class="danger">Pay Now</button>
+          <button id="verifyBtn">Pause & Verify</button>
+        </div>
+        <p id="decisionClock" class="muted"></p>
+        </section>
+
+        <section id="hvmPanel" class="panel feature-panel hidden">
+          <h2>Human Vulnerability Model (HVM)</h2>
+          <div id="hvmGrid" class="grid"></div>
+          <div id="hvmGraph" class="graph-bars"></div>
+        </section>
+
+        <section id="dnaPanel" class="panel feature-panel hidden">
+          <h2>Scam DNA Engine</h2>
+          <div id="dnaBars" class="dna-bars"></div>
+          <label for="messageInput">Paste suspicious message</label>
+          <textarea id="messageInput" rows="4" placeholder="Paste SMS/UPI/bank message"></textarea>
+          <button id="classifyBtn">Classify Message</button>
+          <p id="classificationResult" class="muted"></p>
+        </section>
+
+        <section id="familyPanel" class="panel feature-panel hidden">
+          <h2>Family Protect Mode</h2>
+          <p id="familyComingSoon" class="muted">COMING SOON</p>
+          <div class="inline-form">
+            <input id="guardianName" placeholder="Guardian name" />
+            <input id="guardianContact" placeholder="Phone or email" />
+            <button id="linkGuardianBtn">Link Guardian</button>
+          </div>
+          <ul id="guardianAlerts" class="feed"></ul>
+        </section>
+
+        <section id="classifierPanel" class="panel span2 feature-panel hidden">
+          <h2>Dataset Output (`payment_fraud.csv`)</h2>
+          <div class="actions">
+            <button id="runPipelineBtn" class="primary">Run Data Pipeline</button>
+            <input id="csvFileInput" type="file" accept=".csv" />
+          </div>
+          <p id="pipelineStatus" class="muted"></p>
+          <div id="datasetSummary" class="grid"></div>
+          <ul id="datasetBreakdown" class="feed"></ul>
+          <h3>Threshold Classifier (Model Quality)</h3>
+          <div class="threshold-row">
+            <label for="thresholdSlider">Risk threshold</label>
+            <input
+              id="thresholdSlider"
+              type="range"
+              min="0.2"
+              max="0.95"
+              step="0.01"
+              value="0.65"
+            />
+            <strong id="thresholdValue">0.65</strong>
+          </div>
+          <div id="thresholdMetrics" class="grid"></div>
+          <h3>Top Risky Transactions (cleaned + scored)</h3>
+          <ul id="topRiskRows" class="feed"></ul>
+        </section>
+
+        <section id="eventPanel" class="panel span2 feature-panel hidden">
+          <h2>Event Feed</h2>
+          <div id="attemptChart" class="attempt-chart"></div>
+          <ul id="eventFeed" class="feed"></ul>
+        </section>
+      </main>
+    </div>
+
+    <div id="freezeRoot"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
